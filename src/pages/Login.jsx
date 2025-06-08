@@ -42,7 +42,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5077/api/auth/google";
+    window.location.href = `${import.meta.env.VITE_NODE_API}/api/auth/google`;
   };
 
   useEffect(() => {
