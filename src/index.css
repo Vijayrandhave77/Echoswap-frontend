@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Timess";
+    src: local("TIMESS__"),
+        url("../public/fonts/TIMESS__.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "osaka";
+    src: local("osaka"),
+        url("../public/fonts/osaka-re.ttf") format("truetype");
+}
