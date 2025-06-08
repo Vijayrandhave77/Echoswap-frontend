@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { FaLock } from "react-icons/fa";
 import { checkToken } from "../GenerelHelper/Token";
 import { useNavigate } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
+import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
 function CreatePassword() {
   const navigate = useNavigate();
+   const { user } = useContext(AuthContextApi);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,7 +40,7 @@ function CreatePassword() {
   };
 
   useEffect(() => {
-    if (!checkToken()) {
+    if (!user) {
       navigate("/");
     }
   }, []);

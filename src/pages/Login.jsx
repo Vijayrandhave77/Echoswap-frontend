@@ -4,10 +4,9 @@ import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
-import { checkToken } from "../GenerelHelper/Token";
 const Login = () => {
   const navigate = useNavigate();
-  const { setIsLogin } = useContext(AuthContextApi);
+  const {user, setIsLogin } = useContext(AuthContextApi);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -46,7 +45,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (checkToken()) {
+    if (user) {
       navigate("/");
     }
   }, []);

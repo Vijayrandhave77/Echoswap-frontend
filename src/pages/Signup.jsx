@@ -3,10 +3,11 @@ import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
-import { checkToken } from "../GenerelHelper/Token";
+import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
 const Signup = () => {
   const navigate = useNavigate();
+   const { user } = useContext(AuthContextApi);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -46,7 +47,7 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    if (checkToken()) {
+    if (user) {
       navigate("/");
     }
   }, []);
