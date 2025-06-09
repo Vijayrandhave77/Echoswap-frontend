@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FaLock } from "react-icons/fa";
-import { checkToken } from "../GenerelHelper/Token";
 import { useNavigate } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
