@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
 import { NavLink, useNavigate } from "react-router-dom";
 import { wishlistContextApi } from "../contextProvider/WishlistContextApi";
+import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
 function ProductCard({ products }) {
   const { wishlists, addToWishlist } = useContext(wishlistContextApi);
+  const { user } = useContext(AuthContextApi);
   const navigate = useNavigate();
   const [wishState, setWishState] = useState(false);
   const handleProductDetails = (id) => {
@@ -21,15 +23,17 @@ function ProductCard({ products }) {
 
   return (
     <div className="product-card bg-white rounded-lg shadow-md overflow-hidden relative w-64">
-      <button
-        onClick={() => addToWishlist(products?._id)}
-        title="Add to Wishlist"
-        className={`absolute top-2 right-2 z-10  hover:text-red-500 bg-white bg-opacity-80 rounded-full p-1 transition-colors duration-200 ${
-          wishState ? "text-red-500" : "text-gray-600"
-        }`}
-      >
-        <FiHeart size={20} />
-      </button>
+      {user?._id !== products?.postedBy?._id && (
+        <button
+          onClick={() => addToWishlist(products?._id)}
+          title="Add to Wishlist"
+          className={`absolute top-2 right-2 z-10  hover:text-red-500 bg-white bg-opacity-80 rounded-full p-1 transition-colors duration-200 ${
+            wishState ? "text-red-500" : "text-gray-600"
+          }`}
+        >
+          <FiHeart size={20} />
+        </button>
+      )}
 
       <div className="card-image overflow-hidden">
         <img

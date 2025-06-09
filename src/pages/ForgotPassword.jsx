@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import axios from "axios";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 

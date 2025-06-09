@@ -11,8 +11,6 @@ export const AuthProvider = ({ children }) => {
       setIsLogin(true);
     }
   }, []);
-  console.log("AuthProvider user:", user);
-  console.log("AuthProvider isLogin:", isLogin);
   const fetchUser = async () => {
     try {
       const response = await BasicAuthProvider("user").getMethod();

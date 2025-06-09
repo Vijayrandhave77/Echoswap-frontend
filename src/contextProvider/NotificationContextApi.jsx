@@ -1,10 +1,12 @@
 import { toast } from "react-toastify";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
+import { AuthContextApi } from "./AuthContextApi";
 
 export const notificationContextApi = createContext();
 
 export const Notificationprovider = ({ children }) => {
+  const {user} = useContext(AuthContextApi);
   const [notifications, setNotifications] = useState([]);
 
   const getNotifications = async () => {
@@ -29,8 +31,7 @@ export const Notificationprovider = ({ children }) => {
 
   useEffect(() => {
     getNotifications();
-  }, []);
-  console.log("Notificationprovider", notifications);
+  }, [user]);
   return (
     <notificationContextApi.Provider
       value={{ notifications, updateNotification,getNotifications }}

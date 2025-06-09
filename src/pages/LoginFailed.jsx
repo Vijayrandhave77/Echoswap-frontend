@@ -1,12 +1,21 @@
-import React from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
 const LoginFailed = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContextApi);
 
   const handleRedirect = () => {
     navigate("/login");
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">

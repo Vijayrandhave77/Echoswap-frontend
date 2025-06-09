@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
 const Signup = () => {
   const navigate = useNavigate();
-   const { user } = useContext(AuthContextApi);
+  const { user } = useContext(AuthContextApi);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

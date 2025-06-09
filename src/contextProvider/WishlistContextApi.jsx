@@ -1,10 +1,12 @@
 import { toast } from "react-toastify";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
+import { AuthContextApi } from "./AuthContextApi";
 
 export const wishlistContextApi = createContext();
 
 export const Wishlistprovider = ({ children }) => {
+  const {user} = useContext(AuthContextApi);
   const [wishlists, setWishlists] = useState([]);
 
   const getWishlists = async () => {
@@ -29,7 +31,7 @@ export const Wishlistprovider = ({ children }) => {
 
   useEffect(() => {
     getWishlists();
-  }, []);
+  }, [user]);
   return (
     <wishlistContextApi.Provider value={{ wishlists, addToWishlist }}>
       {children}

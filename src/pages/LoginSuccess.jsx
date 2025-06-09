@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { checkToken } from "../GenerelHelper/Token";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
+import { useContext } from "react";
 const LoginSuccess = () => {
   const navigate = useNavigate();
-   const { user } = useContext(AuthContextApi);
+  const { user } = useContext(AuthContextApi);
   useEffect(() => {
     if (user) {
       navigate("/");
