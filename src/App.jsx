@@ -18,9 +18,9 @@ import Cart from "./pages/Cart";
 import Rating from "./pages/Rating";
 import NotFoundPage from "./pages/NotFoundPage";
 import ResetPassword from "./pages/ResetPassword";
+import NotificationPage from "./pages/NotificationPage";
 
 function App() {
-
   return (
     <>
       <BrowserRouter>
@@ -35,6 +35,7 @@ function App() {
             <Route path="chat" element={<Chat />} />
             <Route path="cart" element={<Cart />} />
             <Route path="rating" element={<Rating />} />
+            <Route path="notifications" element={<NotificationPage />} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
             <Route path="login-success" element={<LoginSuccess />} />

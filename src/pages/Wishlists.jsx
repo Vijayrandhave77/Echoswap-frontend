@@ -8,9 +8,11 @@ function Wishlists() {
   const { wishlists } = useContext(wishlistContextApi);
 
   return (
-    <div className="min-h-screen pt-[150px] sm:pt-[90px] px-4 flex justify-center">
-      <div className="product-heading font-bold p-2 px-8 text-lg">Wishlist</div>
-      <div className="product-card-container w-full px-10 py-4 flex flex-wrap gap-4 justify-start">
+    <div className="w-full pt-[150px] sm:pt-[90px]">
+      <div className="product-heading font-bold p-2 px-8 text-lg">
+        Latest Suggestions
+      </div>
+      <div className="product-card-container w-full px-4 md:px-10 py-4 flex flex-wrap gap-4 justify-center">
         {wishlists?.length > 0 ? (
           <>
             {wishlists?.map((wish, index) => (

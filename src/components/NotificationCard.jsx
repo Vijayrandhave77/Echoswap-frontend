@@ -1,12 +1,27 @@
 import { FiUserPlus } from "react-icons/fi";
 import { BsChatDots } from "react-icons/bs";
 import DateHelper from "../GenerelHelper/DateHelper";
+import { useNavigate } from "react-router-dom";
 
-const NotificationCard = ({ notification }) => {
+const NotificationCard = ({ notification, setShowNotifications }) => {
+  const navigate = useNavigate();
   const { type, senderId, createdAt } = notification;
-
+  const gotoChat = (senderId, type) => {
+    if (type == "message") {
+      navigate(`/chat?user=${senderId}`);
+      setShowNotifications(false);
+    } else {
+      navigate(`/profile/${senderId}`);
+      setShowNotifications(false);
+    }
+  };
   return (
-    <div className="flex items-center px-3 py-2 rounded-md bg-white border shadow-sm hover:bg-gray-50 transition">
+    <div
+      className="flex items-center px-3 py-2 rounded-md bg-white border shadow-sm hover:bg-gray-50 transition cursor-pointer"
+      onClick={() => {
+        gotoChat(senderId?._id, type);
+      }}
+    >
       <img
         src={senderId?.picture || "/user.png"}
         alt={senderId?.name}

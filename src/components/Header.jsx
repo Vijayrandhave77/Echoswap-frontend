@@ -82,8 +82,6 @@ export default function Header() {
     };
   }, [socket]);
 
-  console.log("Header notifications", socket);
-
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-3 flex-wrap md:flex-nowrap">
@@ -155,6 +153,7 @@ export default function Header() {
                           <NotificationCard
                             key={notification._id}
                             notification={notification}
+                            setShowNotifications={setShowNotifications}
                           />
                         ))
                       ) : (
@@ -332,9 +331,14 @@ export default function Header() {
               <NavLink
                 to="/wishlist"
                 onClick={() => setMobileOpen(false)}
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center relative"
               >
                 <IoMdHeartEmpty size={22} /> Wishlist
+                {wishlists.length > 0 && (
+                  <span className="absolute left-4 -top-1 text-xs bg-red-600 text-white w-3 h-3 flex items-center justify-center rounded-full">
+                    {wishlists?.length || 0}
+                  </span>
+                )}
               </NavLink>
               <NavLink
                 to="/chat"
@@ -346,8 +350,13 @@ export default function Header() {
               <NavLink
                 to="/notifications"
                 onClick={() => setMobileOpen(false)}
-                className="flex gap-2 items-center"
+                className="flex gap-2 items-center relative"
               >
+                {notifications?.length > 0 && (
+                  <span className="absolute left-4 -top-1 text-xs bg-red-600 text-white w-3 h-3 flex items-center justify-center rounded-full">
+                    {notifications?.length || 0}
+                  </span>
+                )}
                 <IoIosNotificationsOutline size={22} /> Notifications
               </NavLink>
               <NavLink

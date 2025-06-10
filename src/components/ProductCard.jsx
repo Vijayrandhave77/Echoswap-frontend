@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { wishlistContextApi } from "../contextProvider/WishlistContextApi";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
@@ -8,6 +8,7 @@ function ProductCard({ products }) {
   const { wishlists, addToWishlist } = useContext(wishlistContextApi);
   const { user } = useContext(AuthContextApi);
   const navigate = useNavigate();
+  const location = useLocation();
   const [wishState, setWishState] = useState(false);
   const handleProductDetails = (id) => {
     navigate(`/details/${id}`);
@@ -34,12 +35,23 @@ function ProductCard({ products }) {
           <FiHeart size={20} />
         </button>
       )}
+      {location.pathname === "/wishlist" && (
+        <button
+          onClick={() => addToWishlist(products?._id)}
+          title="Add to Wishlist"
+          className={`absolute top-2 right-2 z-10  hover:text-red-500 bg-white bg-opacity-80 rounded-full p-1 transition-colors duration-200 ${
+            wishState ? "text-red-500" : "text-gray-600"
+          }`}
+        >
+          <FiHeart size={20} />
+        </button>
+      )}
 
       <div className="card-image overflow-hidden">
         <img
           src={products?.gallery[0] ? products?.gallery[0] : "/no_image.jpg"}
           alt="iPhone 12 Pro Max"
-          className="cursor-auto w-full h-40 object-cover"
+          className="cursor-auto w-full h-40 object-contain p-2"
         />
       </div>
 

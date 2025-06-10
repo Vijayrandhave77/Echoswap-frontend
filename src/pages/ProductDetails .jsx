@@ -5,12 +5,14 @@ import ProductImageSlider from "../components/ProductImageSlider";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { wishlistContextApi } from "../contextProvider/WishlistContextApi";
+import { AuthContextApi } from "../contextProvider/AuthContextApi";
 
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { id } = params;
   const { wishlists, addToWishlist } = useContext(wishlistContextApi);
+  const { user } = useContext(AuthContextApi);
   const [product, setProduct] = useState({});
   const [wishState, setWishState] = useState(false);
 
@@ -75,15 +77,17 @@ const ProductDetails = () => {
               >
                 <FiShare2 size={20} />
               </button>
-              <button
-                className={`text-gray-600 hover:text-red-500 ${
-                  wishState ? "text-red-500" : "text-gray-600"
-                }`}
-                onClick={() => addToWishlist(product?._id)}
-                title="Add to Wishlist"
-              >
-                <FiHeart size={20} />
-              </button>
+              {user?._id !== product?.postedBy?._id && (
+                <button
+                  className={`text-gray-600 hover:text-red-500 ${
+                    wishState ? "text-red-500" : "text-gray-600"
+                  }`}
+                  onClick={() => addToWishlist(product?._id)}
+                  title="Add to Wishlist"
+                >
+                  <FiHeart size={20} />
+                </button>
+              )}
             </div>
 
             <h2 className="text-2xl font-semibold">{product?.price}</h2>
@@ -103,35 +107,37 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-lg shadow-md">
-            <h3 className="text-lg font-bold mb-3">Seller Description</h3>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gray-300 rounded-full">
-                <img
-                  src={product?.postedBy?.picture || "/user.png"}
-                  alt="profile"
-                  className="w-full h-full rounded-full border border-gray-300 object-cover"
-                />
+          {user?._id !== product?.postedBy?._id && (
+            <div className="bg-white p-5 rounded-lg shadow-md">
+              <h3 className="text-lg font-bold mb-3">Seller Description</h3>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gray-300 rounded-full">
+                  <img
+                    src={product?.postedBy?.picture || "/user.png"}
+                    alt="profile"
+                    className="w-full h-full rounded-full border border-gray-300 object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-medium">{product?.postedBy?.name}</p>
+                  <NavLink
+                    to={`/profile/${product?.postedBy?._id}`}
+                    className="text-blue-600 text-sm hover:underline mt-1 block"
+                  >
+                    View Profile
+                  </NavLink>
+                </div>
               </div>
-              <div>
-                <p className="font-medium">{product?.postedBy?.name}</p>
-                <NavLink
-                  to={`/profile/${product?.postedBy?._id}`}
-                  className="text-blue-600 text-sm hover:underline mt-1 block"
-                >
-                  View Profile
-                </NavLink>
-              </div>
+              <button
+                className="w-full mt-5 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
+                onClick={() => {
+                  navigate(`/chat?user=${product?.postedBy?._id}`);
+                }}
+              >
+                Chat with Seller
+              </button>
             </div>
-            <button
-              className="w-full mt-5 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
-              onClick={() => {
-                navigate(`/chat?user=${product?.postedBy?._id}`);
-              }}
-            >
-              Chat with Seller
-            </button>
-          </div>
+          )}
 
           <div className="bg-white p-5 rounded-lg shadow-md">
             <h4 className="text-md font-semibold mb-3">Location</h4>
