@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 import Chat from "./pages/Chat";
 import MainPage from "./pages/MainPage";
 import Post from "./pages/Post";
@@ -22,7 +21,7 @@ import NotificationPage from "./pages/NotificationPage";
 
 function App() {
   return (
-    <>
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -47,8 +46,8 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <ToastContainer position="top-center" autoClose={3000} />
-    </>
+      <Toaster position="top-center" reverseOrder={false} />
+    </div>
   );
 }
 

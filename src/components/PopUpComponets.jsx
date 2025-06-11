@@ -10,7 +10,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { useContext } from "react";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function PopUpComponets({ locpop, profileDrop, notiPop }) {
   const navigate = useNavigate();

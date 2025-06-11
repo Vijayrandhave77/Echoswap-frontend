@@ -3,7 +3,7 @@ import AdContainer from "../components/AdContainer";
 import ProductCard from "../components/ProductCard";
 import { useEffect } from "react";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 function MainPage() {
   const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ function MainPage() {
         ).getMethod();
         setProducts(response?.products);
       } catch (error) {
-        toast.error(error);
+        toast.error(JSON.stringify(error));
       }
     };
 

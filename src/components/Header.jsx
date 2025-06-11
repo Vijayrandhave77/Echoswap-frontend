@@ -16,11 +16,11 @@ import {
 } from "react-icons/fa";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
 import { wishlistContextApi } from "../contextProvider/WishlistContextApi";
 import NotificationCard from "./NotificationCard";
 import { notificationContextApi } from "../contextProvider/NotificationContextApi";
 import { socketContext } from "../contextProvider/SocketContext";
+import toast from "react-hot-toast";
 
 export default function Header() {
   const navigate = useNavigate();

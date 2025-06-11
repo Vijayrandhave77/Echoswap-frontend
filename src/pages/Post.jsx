@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Post = () => {
   const [isLoading, setIsLoading] = useState(false);

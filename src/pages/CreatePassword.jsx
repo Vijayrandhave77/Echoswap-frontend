@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";

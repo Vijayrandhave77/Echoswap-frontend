@@ -14,7 +14,7 @@ import { AuthContextApi } from "../contextProvider/AuthContextApi";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import DateHelper from "../GenerelHelper/DateHelper";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 const Profile = () => {
   const { user } = useContext(AuthContextApi);
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ const Profile = () => {
       }
       toast.success(response.message);
     } catch (error) {
-      toast.error(error);
+      toast.error(JSON.stringify(error));
     }
   };
 
@@ -91,7 +91,7 @@ const Profile = () => {
         getFollowFollowing();
         setProduct(response.product);
       } catch (error) {
-        toast.error(error);
+        toast.error(JSON.stringify(error));
       }
     };
 

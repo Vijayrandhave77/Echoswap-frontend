@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { FaEnvelopeOpenText } from "react-icons/fa";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 

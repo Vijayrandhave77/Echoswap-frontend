@@ -2,7 +2,7 @@ import { useState, useRef, useContext } from "react";
 import { FiCamera, FiSettings } from "react-icons/fi";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
-import { toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { NavLink } from "react-router-dom";
 
 function ProfileUpdateModal({ setShowModal }) {
@@ -194,6 +194,7 @@ function ProfileUpdateModal({ setShowModal }) {
           </div>
         </form>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

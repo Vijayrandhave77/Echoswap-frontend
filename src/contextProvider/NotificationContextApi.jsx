@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { createContext, useState, useEffect, useContext } from "react";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { AuthContextApi } from "./AuthContextApi";
@@ -14,7 +14,7 @@ export const Notificationprovider = ({ children }) => {
       const response = await BasicAuthProvider("notification").getMethod();
       setNotifications(response);
     } catch (error) {
-      toast.error(error);
+      toast.error(JSON.stringify(error));
     }
   };
   const updateNotification = async (Id) => {
@@ -25,7 +25,7 @@ export const Notificationprovider = ({ children }) => {
       toast.success(response.message);
       getNotifications();
     } catch (error) {
-      toast.error(error);
+      toast.error(JSON.stringify(error));
     }
   };
 

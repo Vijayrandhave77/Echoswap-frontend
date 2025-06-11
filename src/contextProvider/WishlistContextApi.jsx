@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { createContext, useState, useEffect, useContext } from "react";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { AuthContextApi } from "./AuthContextApi";
@@ -14,7 +14,7 @@ export const Wishlistprovider = ({ children }) => {
       const response = await BasicAuthProvider("wishlist").getMethod();
       setWishlists(response.wishlists);
     } catch (error) {
-      toast.error(error);
+      toast.error(JSON.stringify(error));
     }
   };
   const addToWishlist = async (productId) => {
@@ -25,7 +25,7 @@ export const Wishlistprovider = ({ children }) => {
       toast.success(response.message);
       getWishlists();
     } catch (error) {
-      toast.error(error);
+      toast.error(JSON.stringify(error));
     }
   };
 
