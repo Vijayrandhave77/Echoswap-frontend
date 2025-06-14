@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Chat from "./pages/Chat";
 import MainPage from "./pages/MainPage";
 import Post from "./pages/Post";
@@ -18,8 +20,13 @@ import Rating from "./pages/Rating";
 import NotFoundPage from "./pages/NotFoundPage";
 import ResetPassword from "./pages/ResetPassword";
 import NotificationPage from "./pages/NotificationPage";
+import { useContext } from "react";
+import { notificationContextApi } from "./contextProvider/NotificationContextApi";
+import PushNotification from "./components/PushNotification";
 
 function App() {
+  const { pushNotification } = useContext(notificationContextApi);
+  console.log("Push Notification:", pushNotification);
   return (
     <div>
       <BrowserRouter>
@@ -47,6 +54,19 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" reverseOrder={false} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <PushNotification notification={pushNotification} />
     </div>
   );
 }

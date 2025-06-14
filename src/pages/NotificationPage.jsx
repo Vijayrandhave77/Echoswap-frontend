@@ -34,7 +34,7 @@ const NotificationPage = () => {
 
   return (
     <div className="min-h-screen pt-[150px] sm:pt-[90px] px-4 flex justify-center">
-      <div className="bg-white rounded-xl shadow-sm divide-y">
+      <div className="w-full max-w-2xl  ">
         {notifications?.length === 0 ? (
           <div className="p-6 text-center text-gray-500">
             No notifications yet.

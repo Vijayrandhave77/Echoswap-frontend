@@ -77,7 +77,7 @@ const Profile = () => {
       }
       toast.success(response.message);
     } catch (error) {
-      toast.error(JSON.stringify(error));
+      console.error(error);
     }
   };
 
@@ -91,7 +91,7 @@ const Profile = () => {
         getFollowFollowing();
         setProduct(response.product);
       } catch (error) {
-        toast.error(JSON.stringify(error));
+        console.error(error);
       }
     };
 

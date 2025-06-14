@@ -6,15 +6,16 @@ import { AuthContextApi } from "./AuthContextApi";
 export const notificationContextApi = createContext();
 
 export const Notificationprovider = ({ children }) => {
-  const {user} = useContext(AuthContextApi);
+  const { user } = useContext(AuthContextApi);
   const [notifications, setNotifications] = useState([]);
-
+  const [pushNotification, setPushNotification] = useState(null);
+  
   const getNotifications = async () => {
     try {
       const response = await BasicAuthProvider("notification").getMethod();
       setNotifications(response);
     } catch (error) {
-      toast.error(JSON.stringify(error));
+      console.error(error);
     }
   };
   const updateNotification = async (Id) => {
@@ -25,7 +26,7 @@ export const Notificationprovider = ({ children }) => {
       toast.success(response.message);
       getNotifications();
     } catch (error) {
-      toast.error(JSON.stringify(error));
+      console.error(error);
     }
   };
 
@@ -34,7 +35,7 @@ export const Notificationprovider = ({ children }) => {
   }, [user]);
   return (
     <notificationContextApi.Provider
-      value={{ notifications, updateNotification,getNotifications }}
+      value={{ notifications, updateNotification, getNotifications,pushNotification, setPushNotification }}
     >
       {children}
     </notificationContextApi.Provider>

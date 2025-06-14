@@ -6,7 +6,7 @@ import { AuthContextApi } from "./AuthContextApi";
 export const wishlistContextApi = createContext();
 
 export const Wishlistprovider = ({ children }) => {
-  const {user} = useContext(AuthContextApi);
+  const { user } = useContext(AuthContextApi);
   const [wishlists, setWishlists] = useState([]);
 
   const getWishlists = async () => {
@@ -14,7 +14,7 @@ export const Wishlistprovider = ({ children }) => {
       const response = await BasicAuthProvider("wishlist").getMethod();
       setWishlists(response.wishlists);
     } catch (error) {
-      toast.error(JSON.stringify(error));
+      console.error(error);
     }
   };
   const addToWishlist = async (productId) => {
@@ -25,7 +25,7 @@ export const Wishlistprovider = ({ children }) => {
       toast.success(response.message);
       getWishlists();
     } catch (error) {
-      toast.error(JSON.stringify(error));
+      console.error(error);
     }
   };
 

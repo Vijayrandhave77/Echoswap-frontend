@@ -16,7 +16,7 @@ function MainPage() {
         ).getMethod();
         setProducts(response?.products);
       } catch (error) {
-        toast.error(JSON.stringify(error));
+        console.error(error);
       }
     };
 
