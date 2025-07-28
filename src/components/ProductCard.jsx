@@ -3,6 +3,8 @@ import { FiHeart } from "react-icons/fi";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { wishlistContextApi } from "../contextProvider/WishlistContextApi";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
+import { MMYY } from "../GenerelHelper/DateHelper";
+import AddToCartButton from "./AddToCartButton";
 
 function ProductCard({ products }) {
   const { wishlists, addToWishlist } = useContext(wishlistContextApi);
@@ -56,14 +58,17 @@ function ProductCard({ products }) {
       </div>
 
       <div className="information px-4 py-2 flex flex-col justify-evenly text-sm text-black cursor-pointer">
-        <div
-          onClick={() => {
-            handleProductDetails(products?._id);
-          }}
-        >
+        <div>
           <div>
             <p className="font-bold text-lg">{products?.price}</p>
-            <p className="truncate">{products?.title}</p>
+            <p
+              className="truncate"
+              onClick={() => {
+                handleProductDetails(products?._id);
+              }}
+            >
+              {products?.title}
+            </p>
           </div>
           <div className="userInfo text-xs text-gray-700 mt-2 flex justify-between">
             <NavLink
@@ -78,12 +83,11 @@ function ProductCard({ products }) {
               <p>{products?.postedBy?.name}</p>
             </NavLink>
             <p className="flex items-center">
-              {products?.createdAt &&
-                new Date(products?.createdAt).toLocaleString("en-US", {
-                  month: "long",
-                  year: "numeric",
-                })}
+              {products?.createdAt && MMYY(products?.createdAt)}
             </p>
+          </div>
+          <div className="addtocart flex w-full justify-center mt-1">
+            <AddToCartButton product={products}></AddToCartButton>
           </div>
         </div>
       </div>

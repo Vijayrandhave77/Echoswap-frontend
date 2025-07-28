@@ -21,6 +21,8 @@ import NotificationCard from "./NotificationCard";
 import { notificationContextApi } from "../contextProvider/NotificationContextApi";
 import { socketContext } from "../contextProvider/SocketContext";
 import toast from "react-hot-toast";
+import SearchBar from "./SearchBar";
+import { CartContextApi } from "../contextProvider/CartContextApi";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ export default function Header() {
   const { notifications, getNotifications, setPushNotification } = useContext(
     notificationContextApi
   );
+  const { cart } = useContext(CartContextApi);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -99,22 +102,7 @@ export default function Header() {
             Echoswap
           </NavLink>
 
-          <div className="hidden md:flex items-center border border-gray-300 rounded-full px-4 py-2 shadow-sm w-full max-w-2xl flex-shrink">
-            <input
-              type="text"
-              placeholder="Location"
-              className="w-1/3 px-2 text-sm focus:outline-none"
-            />
-            <span className="border-l h-6 mx-2" />
-            <input
-              type="text"
-              placeholder="What are you looking for?"
-              className="w-2/3 px-2 text-sm focus:outline-none"
-            />
-            <button className="ml-2 bg-blue-600 p-2 rounded-full text-white">
-              <FaSearch size={14} />
-            </button>
-          </div>
+          <SearchBar />
 
           <div className="hidden md:flex items-center gap-4 flex-shrink-0">
             {isLogin ? (
@@ -122,7 +110,7 @@ export default function Header() {
                 <NavLink to="/cart" className="relative">
                   <PiShoppingCartSimple size={22} />
                   <span className="absolute -top-1 -right-2 text-xs bg-red-600 text-white w-3 h-3 flex items-center justify-center rounded-full">
-                    1
+                    {cart?.length}
                   </span>
                 </NavLink>
                 <NavLink to="/wishlist" className="relative">
@@ -331,9 +319,14 @@ export default function Header() {
                 <NavLink
                   to="/cart"
                   onClick={() => setMobileOpen(false)}
-                  className="flex gap-2 items-center"
+                  className="flex gap-2 items-center relative"
                 >
                   <PiShoppingCartSimple size={22} /> Cart
+                  {cart.length > 0 && (
+                    <span className="absolute left-4 -top-1 text-xs bg-red-600 text-white w-3 h-3 flex items-center justify-center rounded-full">
+                      {cart?.length || 0}
+                    </span>
+                  )}
                 </NavLink>
                 <NavLink
                   to="/wishlist"

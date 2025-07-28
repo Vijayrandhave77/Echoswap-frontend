@@ -31,3 +31,10 @@ function DateHelper(timestamp) {
 }
 
 export default DateHelper;
+
+export function MMYY(date) {
+  return new Date(date).toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+}

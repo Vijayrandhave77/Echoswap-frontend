@@ -6,6 +6,9 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { wishlistContextApi } from "../contextProvider/WishlistContextApi";
 import { AuthContextApi } from "../contextProvider/AuthContextApi";
+import toast from "react-hot-toast";
+import { MMYY } from "../GenerelHelper/DateHelper";
+import AddToCartButton from "../components/AddToCartButton";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -26,7 +29,7 @@ const ProductDetails = () => {
     if (navigator.share) {
       navigator.share(shareData).catch((err) => console.error(err));
     } else {
-      alert("Web Share not supported on this device.");
+      toast.error("Web Share not supported on this device.");
     }
   };
 
@@ -62,7 +65,7 @@ const ProductDetails = () => {
           <div className="bg-white p-5 rounded-lg shadow-md">
             <h2 className="text-xl sm:text-2xl font-bold mb-3">Description</h2>
             <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-              {product?.description}
+              <div dangerouslySetInnerHTML={{ __html: product?.description }} />
             </p>
           </div>
         </div>
@@ -90,7 +93,10 @@ const ProductDetails = () => {
               )}
             </div>
 
-            <h2 className="text-2xl font-semibold">{product?.price}</h2>
+            <h2 className="text-2xl font-semibold">
+              {product?.currency || "₹"}
+              {product?.price}
+            </h2>
             <p className="text-lg mt-1">{product?.title}</p>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sm text-gray-600 mt-3">
@@ -98,11 +104,7 @@ const ProductDetails = () => {
                 <span>{product?.address}</span>
               </div>
               <p className="text-xs text-gray-500 mt-1">
-                {product?.createdAt &&
-                  new Date(product.createdAt).toLocaleString("en-US", {
-                    month: "long",
-                    year: "numeric",
-                  })}
+                {product?.createdAt && MMYY(product.createdAt)}
               </p>
             </div>
           </div>
@@ -128,14 +130,20 @@ const ProductDetails = () => {
                   </NavLink>
                 </div>
               </div>
-              <button
-                className="w-full mt-5 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
-                onClick={() => {
-                  navigate(`/chat?user=${product?.postedBy?._id}`);
-                }}
-              >
-                Chat with Seller
-              </button>
+              <div className="w-full flex flex-col sm:flex-row gap-3 mt-5 item-center">
+                <button
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-lg transition duration-200"
+                  onClick={() => {
+                    navigate(`/chat?user=${product?.postedBy?._id}`);
+                  }}
+                >
+                  Chat with Seller
+                </button>
+
+                <div className="w-full flex items-center">
+                  <AddToCartButton product={product} />
+                </div>
+              </div>
             </div>
           )}
 

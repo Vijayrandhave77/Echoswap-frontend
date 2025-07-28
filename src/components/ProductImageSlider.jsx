@@ -12,7 +12,7 @@ const ProductImageSlider = ({ gallery }) => {
 
   const fadeImages = gallery?.map((img) => ({
     src: img,
-    title: "Image", // fixed typo from "tittle"
+    title: "Image",
   }));
 
   return (
@@ -44,7 +44,7 @@ const ProductImageSlider = ({ gallery }) => {
               style={{
                 width: "100%",
                 height: "400px",
-                objectFit: "cover",
+                objectFit: "contain",
                 cursor: "pointer",
               }}
             />

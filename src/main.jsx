@@ -1,7 +1,7 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { AuthProvider } from "./contextProvider/AuthContextApi.jsx";
 import { Wishlistprovider } from "./contextProvider/WishlistContextApi.jsx";
+import { CartProvider } from "./contextProvider/CartContextApi.jsx";
 import "./index.css";
 import "./App.css";
 
@@ -12,15 +12,15 @@ import { Socketprovider } from "./contextProvider/SocketContext.jsx";
 import { Notificationprovider } from "./contextProvider/NotificationContextApi.jsx";
 
 createRoot(document.getElementById("root")).render(
-  // <StrictMode>
   <AuthProvider>
     <Socketprovider>
-      <Wishlistprovider>
-        <Notificationprovider>
-          <App />
-        </Notificationprovider>
-      </Wishlistprovider>
+      <CartProvider>
+        <Wishlistprovider>
+          <Notificationprovider>
+            <App />
+          </Notificationprovider>
+        </Wishlistprovider>
+      </CartProvider>
     </Socketprovider>
   </AuthProvider>
-  // </StrictMode>
 );

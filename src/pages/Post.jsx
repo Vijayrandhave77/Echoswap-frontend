@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiUploadCloud } from "react-icons/fi";
 import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import TextEditor from "../components/TextEditor";
 
 const Post = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,7 @@ const Post = () => {
     pincode: "",
     location: undefined,
   });
-
+  console.log(formData.description);
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     const imageUrls = files.map((file) => ({
@@ -167,7 +168,7 @@ const Post = () => {
 
   return (
     <div className="min-h-screen pt-[150px] sm:pt-[90px] px-4 flex justify-center">
-      <div className="w-full max-w-5xl bg-white shadow-2xl rounded-2xl p-8">
+      <div className="w-full max-w-5xl bg-white rounded-2xl p-8">
         <h1 className="text-4xl font-bold text-gray-800 mb-10 border-b pb-4 font-mono">
           Post Your Product
         </h1>
@@ -206,14 +207,7 @@ const Post = () => {
           <label className="block mb-2 text-sm font-semibold text-gray-700">
             Description
           </label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows={4}
-            placeholder="Describe your product condition, features, and more..."
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 resize-none"
-          ></textarea>
+          <TextEditor setFormData={setFormData} />
         </div>
 
         <div className="mb-6">

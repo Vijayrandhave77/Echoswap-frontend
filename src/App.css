@@ -130,7 +130,7 @@ body {
 
 .product-card {
     width: 18rem;
-    height: 18rem;
+    height: 25rem;
     border: 1px solid gray;
 }
 
@@ -153,15 +153,8 @@ body {
 .card-image>img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
-
-/* .card-image>img:hover {
-    transform: scale(1.5, 1.5);
-    transition: all 1s ease-in-out;
-} */
-
-
 
 .shine-overlay {
   position: absolute;

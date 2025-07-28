@@ -56,9 +56,9 @@ export function BasicAuthProvider(endpoint) {
       }
     },
 
-    deleteMethod: async () => {
+    deleteMethod: async (data) => {
       try {
-        const res = await axios.delete(API_URL, config);
+        const res = await axios.delete(API_URL, { ...config, data: data });
         return res.data;
       } catch (err) {
         throw err;
