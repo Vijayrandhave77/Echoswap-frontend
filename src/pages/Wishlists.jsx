@@ -8,9 +8,9 @@ function Wishlists() {
   const { wishlists } = useContext(wishlistContextApi);
 
   return (
-    <div className="w-full pt-[150px] sm:pt-[90px]">
+    <div className="w-full py-10 px-4 sm:px-8">
       <div className="product-heading font-bold p-2 px-8 text-lg">
-        Latest Suggestions
+        Wishlists
       </div>
       <div className="product-card-container w-full px-4 md:px-10 py-4 flex flex-wrap gap-4 justify-center">
         {wishlists?.length > 0 ? (

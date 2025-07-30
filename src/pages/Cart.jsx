@@ -5,18 +5,17 @@ import { BasicAuthProvider } from "../AuthProvider/AuthProvider";
 import { CartContextApi } from "../contextProvider/CartContextApi";
 
 export default function CartPage() {
-  const { cart, incQuantity, decQuantity, deleteCart } =
+  const { cart, incQuantity, decQuantity, deleteCart, subTotal, products } =
     useContext(CartContextApi);
-  const subTotal = cart?.reduce((total, item) => {
-    return total + item?.totalAmount;
-  }, 0);
+
   const handelOrders = async (e) => {
     try {
       const response = await BasicAuthProvider(`orders/checkout`).postMethod({
         amount: Number(subTotal),
+        products: products,
       });
-      if (response.order.amount) {
-        Razorpay(response.order.id, response.order.amount);
+      if (response.orderResponse.amount) {
+        Razorpay(response.orderResponse.orderId, response.orderResponse.amount);
       }
     } catch (error) {
       console.log(error);
@@ -24,7 +23,7 @@ export default function CartPage() {
   };
 
   return (
-    <div className="w-full pt-[150px] sm:pt-[90px]">
+    <div className="w-full py-10 px-4 sm:px-8">
       <div className="px-4 py-6 max-w-6xl mx-auto w-full">
         <h1 className="text-2xl md:text-3xl font-bold mb-4">Your Cart</h1>
 

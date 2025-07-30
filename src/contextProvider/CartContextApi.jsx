@@ -73,6 +73,19 @@ export function CartProvider({ children }) {
   useEffect(() => {
     getCartData();
   }, [user]);
+
+  const subTotal = cart?.reduce((total, item) => {
+    return total + item?.totalAmount;
+  }, 0);
+
+  const products = cart.map((pro) => {
+    return {
+      product: pro.product._id,
+      quantity: pro.quantity,
+      totalAmount: pro.totalAmount,
+    };
+  });
+
   return (
     <>
       <CartContextApi.Provider
@@ -83,6 +96,8 @@ export function CartProvider({ children }) {
           incQuantity,
           decQuantity,
           deleteCart,
+          subTotal,
+          products,
         }}
       >
         {children}

@@ -5,9 +5,9 @@ export function Razorpay(orderId, amount) {
     currency: "INR",
     name: "Vijay Randhave",
     description: "Vijay Randhave",
-    order_id: orderId,
+    order_id: "orderId",
     image: "https://example.com/your_logo",
-    callback_url: `${import.meta.env.VITE_NODE_API}/api/orders/verification`,
+    callback_url: `${import.meta.env.VITE_NODE_API}/api/orders/verification/${orderId}`,
     redirect: true,
     prefill: {
       name: "Vijay Randhave",

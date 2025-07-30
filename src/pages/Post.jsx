@@ -167,7 +167,7 @@ const Post = () => {
   };
 
   return (
-    <div className="min-h-screen pt-[150px] sm:pt-[90px] px-4 flex justify-center">
+    <div className="min-h-screen flex justify-center">
       <div className="w-full max-w-5xl bg-white rounded-2xl p-8">
         <h1 className="text-4xl font-bold text-gray-800 mb-10 border-b pb-4 font-mono">
           Post Your Product

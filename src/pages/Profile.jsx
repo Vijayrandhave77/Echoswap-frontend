@@ -119,7 +119,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen pt-[150px] sm:pt-[90px] px-4 flex justify-center relative">
+    <div className="min-h-screen py-10 px-4 sm:px-8 flex justify-center relative">
       <div className="w-full p-6 flex flex-col md:flex-row gap-2">
         <div className="md:w-1/3 flex flex-col items-center md:items-start">
           <div className="w-24 h-24 rounded-full  flex items-center justify-center text-white text-4xl font-bold overflow-hidden border-2 border-gray-400">

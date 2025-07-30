@@ -23,7 +23,7 @@ function MainPage() {
     fetchProducts();
   }, []);
   return (
-    <div className="w-full pt-[104px] md:pt-20">
+    <div className="w-full py-10 px-4 sm:px-8">
       <AdContainer />
       <div className="product-heading font-bold p-2 px-8 text-lg">
         Latest Suggestions

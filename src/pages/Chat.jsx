@@ -271,7 +271,7 @@ const Chat = () => {
     //   </div>
     // </div>
     <>
-      <div className="pt-[75px] h-[calc(100vh-75px)] flex flex-col md:flex-row bg-gray-100">
+      <div className=" h-[calc(100vh-75px)] flex flex-col md:flex-row bg-gray-100">
         {/* Sidebar: Chat List */}
         <div className="w-full md:w-1/3 h-1/2 md:h-full border-r bg-white shadow-sm flex flex-col">
           <div className="p-4 border-b">

@@ -33,7 +33,7 @@ const NotificationPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-[150px] sm:pt-[90px] px-4 flex justify-center">
+    <div className="min-h-screen py-10 px-4 sm:px-8 flex justify-center">
       <div className="w-full max-w-2xl  ">
         {notifications?.length === 0 ? (
           <div className="p-6 text-center text-gray-500">
