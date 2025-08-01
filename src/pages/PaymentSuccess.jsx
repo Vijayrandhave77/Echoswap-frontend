@@ -11,7 +11,9 @@ export default function PaymentSuccess() {
 
   const getOrderData = async () => {
     try {
-      const response = await BasicAuthProvider(`orders/${orderId}`).getMethod();
+      const response = await BasicAuthProvider(
+        `orders/orderId/${orderId}`
+      ).getMethod();
       setOrder(response?.order);
     } catch (error) {
       console.log(error);
@@ -24,14 +26,30 @@ export default function PaymentSuccess() {
 
   const getStatusBadge = (status) => {
     switch (status.toLowerCase()) {
-      case "paid":
-        return <span className="px-3 py-1 text-sm font-semibold text-green-700 bg-green-100 rounded-full">Paid</span>;
+      case "captured":
+        return (
+          <span className="px-3 py-1 text-sm font-semibold text-green-700 bg-green-100 rounded-full">
+            paid
+          </span>
+        );
       case "created":
-        return <span className="px-3 py-1 text-sm font-semibold text-yellow-700 bg-yellow-100 rounded-full">Created</span>;
-      case "attempted":
-        return <span className="px-3 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-full">Attempted</span>;
+        return (
+          <span className="px-3 py-1 text-sm font-semibold text-yellow-700 bg-yellow-100 rounded-full">
+            Created
+          </span>
+        );
+      case "failed":
+        return (
+          <span className="px-3 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-full">
+            failed
+          </span>
+        );
       default:
-        return <span className="px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-100 rounded-full">{status}</span>;
+        return (
+          <span className="px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-100 rounded-full">
+            {status}
+          </span>
+        );
     }
   };
 
@@ -43,7 +61,10 @@ export default function PaymentSuccess() {
     );
   }
 
-  const subtotal = order.products.reduce((sum, product) => sum + product.totalAmount, 0);
+  const subtotal = order.products.reduce(
+    (sum, product) => sum + product.totalAmount,
+    0
+  );
   const tax = 0;
   const grandTotal = subtotal + tax;
 
@@ -52,27 +73,52 @@ export default function PaymentSuccess() {
       <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
         <div className="p-8 text-center border-b">
           <FaCheckCircle className="text-green-500 text-5xl mx-auto mb-3" />
-          <h1 className="text-3xl font-bold text-gray-800 mb-1">Payment Successful</h1>
-          <p className="text-gray-600">Thank you! Your order has been placed successfully.</p>
+          <h1 className="text-3xl font-bold text-gray-800 mb-1">
+            Payment Successful
+          </h1>
+          <p className="text-gray-600">
+            Thank you! Your order has been placed successfully.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 border-b">
           <div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-3">Order Summary</h2>
-            <p className="mb-1"><span className="font-medium">Order ID:</span> {order.orderId}</p>
-            <p className="mb-1"><span className="font-medium">Amount:</span> ₹{order.amount / 100} {order.currency}</p>
-            <p className="mb-1 flex items-center gap-2">
-              <span className="font-medium">Status:</span> {getStatusBadge(order.status)}
+            <h2 className="text-lg font-semibold text-gray-800 mb-3">
+              Order Summary
+            </h2>
+            <p className="mb-1">
+              <span className="font-medium">Order ID:</span> {order.orderId}
             </p>
-            <p><span className="font-medium">Date:</span> {new Date(order.createdAt).toLocaleString()}</p>
+            <p className="mb-1">
+              <span className="font-medium">Amount:</span> ₹{order.amount / 100}{" "}
+              {order.currency}
+            </p>
+            <p className="mb-1 flex items-center gap-2">
+              <span className="font-medium">Status:</span>{" "}
+              {getStatusBadge(order.status)}
+            </p>
+            <p>
+              <span className="font-medium">Date:</span>{" "}
+              {new Date(order.createdAt).toLocaleString()}
+            </p>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-3">Customer Info</h2>
-            <p className="mb-1"><span className="font-medium">Name:</span> {order.user.name}</p>
-            <p className="mb-1"><span className="font-medium">Email:</span> {order.user.email}</p>
-            <p className="mb-1"><span className="font-medium">Phone:</span> {order.user.phone}</p>
-            <p><span className="font-medium">Address:</span> {order.user.address}</p>
+            <h2 className="text-lg font-semibold text-gray-800 mb-3">
+              Customer Info
+            </h2>
+            <p className="mb-1">
+              <span className="font-medium">Name:</span> {order.user.name}
+            </p>
+            <p className="mb-1">
+              <span className="font-medium">Email:</span> {order.user.email}
+            </p>
+            <p className="mb-1">
+              <span className="font-medium">Phone:</span> {order.user.phone}
+            </p>
+            <p>
+              <span className="font-medium">Address:</span> {order.user.address}
+            </p>
           </div>
         </div>
 
@@ -101,7 +147,9 @@ export default function PaymentSuccess() {
                       />
                       <div>
                         <p className="font-medium">{product.product.title}</p>
-                        <p className="text-xs text-gray-500">{product.product.category}</p>
+                        <p className="text-xs text-gray-500">
+                          {product.product.category}
+                        </p>
                       </div>
                     </div>
                   </td>
@@ -112,16 +160,33 @@ export default function PaymentSuccess() {
               ))}
 
               <tr>
-                <td colSpan="4" className="px-4 py-2 text-right font-semibold border">Subtotal</td>
+                <td
+                  colSpan="4"
+                  className="px-4 py-2 text-right font-semibold border"
+                >
+                  Subtotal
+                </td>
                 <td className="px-4 py-2 border">₹{subtotal}</td>
               </tr>
               <tr>
-                <td colSpan="4" className="px-4 py-2 text-right font-semibold border">Tax</td>
+                <td
+                  colSpan="4"
+                  className="px-4 py-2 text-right font-semibold border"
+                >
+                  Tax
+                </td>
                 <td className="px-4 py-2 border">₹{tax}</td>
               </tr>
               <tr className="bg-gray-100">
-                <td colSpan="4" className="px-4 py-2 text-right font-bold border">Grand Total</td>
-                <td className="px-4 py-2 border font-bold text-green-700">₹{grandTotal}</td>
+                <td
+                  colSpan="4"
+                  className="px-4 py-2 text-right font-bold border"
+                >
+                  Grand Total
+                </td>
+                <td className="px-4 py-2 border font-bold text-green-700">
+                  ₹{grandTotal}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -139,4 +204,3 @@ export default function PaymentSuccess() {
     </div>
   );
 }
-

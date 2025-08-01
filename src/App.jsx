@@ -25,6 +25,8 @@ import { notificationContextApi } from "./contextProvider/NotificationContextApi
 import PushNotification from "./components/PushNotification";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentFailed from "./pages/PaymentFailed";
+import Orders from "./pages/Orders";
+import OrderDetail from "./pages/OrderDetail";
 
 function App() {
   const { pushNotification } = useContext(notificationContextApi);
@@ -42,6 +44,8 @@ function App() {
             <Route path="post" element={<Post />} />
             <Route path="chat" element={<Chat />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="orders/:orderId" element={<OrderDetail />} />
             <Route path="payment-success" element={<PaymentSuccess />} />
             <Route path="/payment-failed" element={<PaymentFailed />} />
             <Route path="rating" element={<Rating />} />

@@ -11,7 +11,9 @@ export default function PaymentFailed() {
 
   const getOrderData = async () => {
     try {
-      const response = await BasicAuthProvider(`orders/${orderId}`).getMethod();
+      const response = await BasicAuthProvider(
+        `orders/orderId/${orderId}`
+      ).getMethod();
       setOrder(response?.order);
     } catch (error) {
       console.log(error);
@@ -24,7 +26,7 @@ export default function PaymentFailed() {
 
   const getStatusBadge = (status) => {
     switch (status?.toLowerCase()) {
-      case "paid":
+      case "captured":
         return (
           <span className="px-3 py-1 text-sm font-semibold text-green-700 bg-green-100 rounded-full">
             Paid
@@ -36,10 +38,10 @@ export default function PaymentFailed() {
             Created
           </span>
         );
-      case "attempted":
+      case "failed":
         return (
           <span className="px-3 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-full">
-            Attempted
+            Failed
           </span>
         );
       default:

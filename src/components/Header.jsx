@@ -23,6 +23,7 @@ import { socketContext } from "../contextProvider/SocketContext";
 import toast from "react-hot-toast";
 import SearchBar from "./SearchBar";
 import { CartContextApi } from "../contextProvider/CartContextApi";
+import { BsBox2 } from "react-icons/bs";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -188,6 +189,12 @@ export default function Header() {
                         className="flex items-center px-4 py-2 hover:bg-gray-100 text-sm gap-2"
                       >
                         <FaStar /> Rating
+                      </NavLink>
+                      <NavLink
+                        to="/orders"
+                        className="flex items-center px-4 py-2 hover:bg-gray-100 text-sm gap-2"
+                      >
+                        <BsBox2 /> Orders
                       </NavLink>
                       <NavLink
                         to="/exchange"
