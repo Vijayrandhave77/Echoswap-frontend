@@ -336,6 +336,13 @@ export default function Header() {
                   )}
                 </NavLink>
                 <NavLink
+                  to="/orders"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex gap-2 items-center relative"
+                >
+                  <BsBox2 /> Orders
+                </NavLink>
+                <NavLink
                   to="/wishlist"
                   onClick={() => setMobileOpen(false)}
                   className="flex gap-2 items-center relative"
